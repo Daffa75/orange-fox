@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PerikananOfferingResource\Pages;
-use App\Models\PerikananOffering;
+use App\Filament\Resources\PeternakanOfferingResource\Pages;
+use App\Models\PeternakanOffering;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -12,9 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
-class PerikananOfferingResource extends Resource
+class PeternakanOfferingResource extends Resource
 {
-    protected static ?string $model = PerikananOffering::class;
+    protected static ?string $model = PeternakanOffering::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -38,7 +38,7 @@ class PerikananOfferingResource extends Resource
                                     ->dehydrated()
                                     ->required()
                                     ->maxLength(255)
-                                    ->unique(PerikananOffering::class, 'slug', ignoreRecord: true),
+                                    ->unique(PeternakanOffering::class, 'slug', ignoreRecord: true),
 
                                 Forms\Components\MarkdownEditor::make('description')
                                     ->disableToolbarButtons(
@@ -151,10 +151,10 @@ class PerikananOfferingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPerikananOfferings::route('/'),
-            'create' => Pages\CreatePerikananOffering::route('/create'),
-            'view' => Pages\ViewPerikananOffering::route('/{record}'),
-            'edit' => Pages\EditPerikananOffering::route('/{record}/edit'),
+            'index' => Pages\ListPeternakanOfferings::route('/'),
+            'create' => Pages\CreatePeternakanOffering::route('/create'),
+            'view' => Pages\ViewPeternakanOffering::route('/{record}'),
+            'edit' => Pages\EditPeternakanOffering::route('/{record}/edit'),
         ];
     }
 }

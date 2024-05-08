@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class PerikananOffering extends Model implements HasMedia
+class PeternakanOffering extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;

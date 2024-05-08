@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PerikananPostResource\Pages;
-use App\Filament\Resources\PerikananPostResource\RelationManagers;
-use App\Models\PerikananPost;
+use App\Filament\Resources\PeternakanPostResource\Pages;
+use App\Filament\Resources\PeternakanPostResource\RelationManagers;
+use App\Models\PeternakanPost;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
@@ -21,9 +21,9 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
-class PerikananPostResource extends Resource
+class PeternakanPostResource extends Resource
 {
-    protected static ?string $model = PerikananPost::class;
+    protected static ?string $model = PeternakanPost::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -47,7 +47,7 @@ class PerikananPostResource extends Resource
                                     ->dehydrated()
                                     ->required()
                                     ->maxLength(255)
-                                    ->unique(PerikananPost::class, 'slug', ignoreRecord: true),
+                                    ->unique(PeternakanPost::class, 'slug', ignoreRecord: true),
 
                                 Forms\Components\MarkdownEditor::make('article')
                                     ->fileAttachmentsDirectory('post/attachments')
@@ -116,7 +116,7 @@ class PerikananPostResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
 
                 Tables\Columns\BadgeColumn::make('status')
-                    ->getStateUsing(fn (PerikananPost $record): string => $record->published_at?->isPast() ? 'Published' : ($record->published_at ? 'Pending' : 'Draft'))
+                    ->getStateUsing(fn (PeternakanPost $record): string => $record->published_at?->isPast() ? 'Published' : ($record->published_at ? 'Pending' : 'Draft'))
                     ->sortable()
                     ->colors([
                         'success' => 'Published',
@@ -229,7 +229,7 @@ class PerikananPostResource extends Resource
 
                             Components\TextEntry::make('status')
                                 ->badge()
-                                ->getStateUsing(fn (PerikananPost $record): string => $record->published_at?->isPast() ? 'Published' : ($record->published_at ? 'Pending' : 'Draft'))
+                                ->getStateUsing(fn (PeternakanPost $record): string => $record->published_at?->isPast() ? 'Published' : ($record->published_at ? 'Pending' : 'Draft'))
                                 ->color(fn (string $state): string => match ($state) {
                                     'Published' => 'success',
                                     'Pending' => 'warning',
@@ -257,10 +257,10 @@ class PerikananPostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPerikananPosts::route('/'),
-            'create' => Pages\CreatePerikananPost::route('/create'),
-            'view' => Pages\ViewPerikananPost::route('/{record}'),
-            'edit' => Pages\EditPerikananPost::route('/{record}/edit'),
+            'index' => Pages\ListPeternakanPosts::route('/'),
+            'create' => Pages\CreatePeternakanPost::route('/create'),
+            'view' => Pages\ViewPeternakanPost::route('/{record}'),
+            'edit' => Pages\EditPeternakanPost::route('/{record}/edit'),
         ];
     }
 }

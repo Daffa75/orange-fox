@@ -2,6 +2,9 @@
     "Title": "Judul",
     "Description": "Deskripsi",
     "Image": "Gambar",
+    "Price": "Harga",
     "Stock": "Stok Barang",
+    "Created at": "Dibuat",
+    "Updated at": "Diupdate",
     "Show": "Tampilkan"
 }

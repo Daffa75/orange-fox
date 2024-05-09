@@ -37,11 +37,14 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
+                    ->hiddenOn('edit')
                     ->translateLabel()
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => \filled($state))
-                    ->required(fn (string $context): bool => $context === 'create')
+                    ->required(fn (string $context): bool => $context === 'create'),
+                Forms\Components\Select::make('roles')->multiple()->relationship('roles', 'name')
+                
             ]);
     }
 

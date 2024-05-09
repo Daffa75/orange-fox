@@ -19,6 +19,18 @@ class InboxResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getEloquentQuery(): Builder
+    {
+        if (auth()->user()->hasRole('Admin Perikanan')) {
+            return parent::getEloquentQuery()->where('source', 'Perikanan');
+        } else if (auth()->user()->hasRole('Admin Pertanian')){
+            return parent::getEloquentQuery()->where('source', 'Pertanian');
+        } else {
+            return parent::getEloquentQuery();
+        }
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -33,6 +45,10 @@ class InboxResource extends Resource
                 Forms\Components\Textarea::make('message')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('source')
+                    ->required()
+                    ->maxLength(255)
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -41,17 +57,25 @@ class InboxResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('message')
+                    ->sortable()
+                    ->wrap()
+                    ->lineClamp(2)
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('source')
+                    ->sortable()
                     ->wrap()
                     ->lineClamp(2)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -61,7 +85,7 @@ class InboxResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

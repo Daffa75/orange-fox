@@ -11,8 +11,10 @@
         "filament/filament": "3.2.57",
         "filament/spatie-laravel-media-library-plugin": "3.2.57",
         "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.4"
+        "livewire/livewire": "^3.4",
+        "rupadana/filament-api-service": "^3.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

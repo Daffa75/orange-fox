@@ -57,12 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(PeternakanPost::class);
     }
-    // public function perikananOffering(): HasMany
-    // {
-    //     return $this->hasMany(PerikananPost::class);
-    // }
-    // public function peternakanOffering(): HasMany
-    // {
-    //     return $this->hasMany(PerikananPost::class);
-    // }
+    public function perikananOffering(): HasMany
+    {
+        return $this->hasMany(PerikananOffering::class);
+    }
+    public function peternakanOffering(): HasMany
+    {
+        return $this->hasMany(PeternakanOffering::class);
+    }
 }

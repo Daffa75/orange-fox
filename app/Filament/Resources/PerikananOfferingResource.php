@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\PerikananOfferingResource\Api\Transformers\PerikananOfferingTransformer;
 use App\Filament\Resources\PerikananOfferingResource\Pages;
 use App\Models\PerikananOffering;
 use Filament\Forms;
@@ -17,6 +18,11 @@ class PerikananOfferingResource extends Resource
     protected static ?string $model = PerikananOffering::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getApiTransformer()
+    {
+        return PerikananOfferingTransformer::class;
+    }
 
     public static function form(Form $form): Form
     {

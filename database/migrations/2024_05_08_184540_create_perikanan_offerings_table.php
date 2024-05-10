@@ -19,6 +19,12 @@ return new class extends Migration
             $table->unsignedBigInteger('qty')->default(0);
             $table->decimal('price', 10, 2)->nullable();
             $table->boolean('is_visible')->default(false);
+            $table->foreignId('created_by')->constrained(
+                table: 'users', indexName: 'perikanan_offerings_created_by'
+            );
+            $table->foreignId('updated_by')->constrained(
+                table: 'users', indexName: 'perikanan_offerings_updated_by'
+            );
             $table->timestamps();
         });
     }

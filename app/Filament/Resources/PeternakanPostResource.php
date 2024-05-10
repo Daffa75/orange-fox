@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\PerikananPostResource\Api\Transformers\PerikananPostTransformer;
 use App\Filament\Resources\PeternakanPostResource\Pages;
 use App\Filament\Resources\PeternakanPostResource\RelationManagers;
 use App\Models\PeternakanPost;
@@ -27,6 +28,10 @@ class PeternakanPostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getApiTransformer()
+    {
+        return PerikananPostTransformer::class;
+    }
     public static function form(Form $form): Form
     {
         return $form

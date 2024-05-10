@@ -1,9 +1,9 @@
 <?php
-namespace App\Filament\Resources\PerikananPostResource\Api\Transformers;
+namespace App\Filament\Resources\PeternakanPostResource\Api\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PerikananPostTransformer extends JsonResource
+class PeternakanPostTransformer extends JsonResource
 {
 
     /**

@@ -147,6 +147,7 @@ class PerikananPostResource extends Resource
                     ->datetime()
                     ->timezone('Asia/Makassar'),
             ])
+            ->defaultSort('id', 'desc')
             ->filtersFormColumns(2)
             ->filters([
                 Tables\Filters\Filter::make('published_at')

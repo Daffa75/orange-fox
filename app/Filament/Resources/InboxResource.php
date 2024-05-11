@@ -50,10 +50,6 @@ class InboxResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('source')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
             ]);
     }
 
@@ -86,6 +82,7 @@ class InboxResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('id', 'desc')
             ->filters([
                 SelectFilter::make('source')
                     ->options([

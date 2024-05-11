@@ -46,7 +46,6 @@ class UserResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
-                    ->hiddenOn('edit')
                     ->translateLabel()
                     ->password()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))

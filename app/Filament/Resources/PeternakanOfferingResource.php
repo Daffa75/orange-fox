@@ -17,7 +17,17 @@ class PeternakanOfferingResource extends Resource
 {
     protected static ?string $model = PeternakanOffering::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
+    protected static ?int $navigationSort = 2;
+    public static function getNavigationGroup(): ?string
+    {
+        return (__('Peternakan'));
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('Peternakan Offerings');
+    }
 
     public static function getApiTransformer()
     {
@@ -82,7 +92,7 @@ class PeternakanOfferingResource extends Resource
 
                                 Forms\Components\TextInput::make('qty')
                                     ->numeric()
-                                    ->label(__('Stock'))
+                                    ->label(__('Prosuct Stock'))
                                     ->required(),
 
 
@@ -114,11 +124,14 @@ class PeternakanOfferingResource extends Resource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('qty')
+                    ->label("Stock")
                     ->translateLabel()
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\IconColumn::make('is_visible')
+                    ->label('Is Visible')
+                    ->translateLabel()
                     ->boolean(),
 
                 Tables\Columns\TextColumn::make('created_at')

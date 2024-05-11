@@ -3,8 +3,14 @@
     "Description": "Deskripsi",
     "Image": "Gambar",
     "Price": "Harga",
-    "Stock": "Stok Barang",
+    "Product Stock": "Stok Barang",
+    "Stock": "Stok",
     "Created at": "Dibuat",
     "Updated at": "Diupdate",
-    "Show": "Tampilkan"
+    "Show": "Tampilkan",
+    "Is Visible": "Tampil",
+    "Perikanan Offerings": "Penawaran Perikanan",
+    "Peternakan Offerings": "Penawaran Peternakan",
+    "Perikanan Post": "Berita Perikanan",
+    "Peternakan Post": "Berita Peternakan"
 }

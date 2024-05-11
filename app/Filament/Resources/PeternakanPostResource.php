@@ -27,6 +27,17 @@ class PeternakanPostResource extends Resource
     protected static ?string $model = PeternakanPost::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
+
+    public static function getNavigationGroup(): ?string
+    {
+        return (__('Peternakan'));
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return __('Peternakan Post');
+    }
 
     public static function getApiTransformer()
     {

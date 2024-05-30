@@ -38,6 +38,7 @@ class PerikananOffering extends Model implements HasMedia
         'title',
         'slug',
         'description',
+        'contact',
         'qty',
         'price',
         'is_visible',

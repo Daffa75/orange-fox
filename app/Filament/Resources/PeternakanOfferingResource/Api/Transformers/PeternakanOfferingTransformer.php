@@ -21,8 +21,9 @@ class PeternakanOfferingTransformer extends JsonResource
             'author' => $this->author,
             'price' => $this->price,
             'qty' => $this->qty,
+            'whatsapp' => $this->contact,
             'created_at' => $this->created_at,
-            'thumbnail' => $this->media->pluck('original_url')->first(),
+            'media' => $this->media->pluck('original_url'),
         ];        
     }
 }

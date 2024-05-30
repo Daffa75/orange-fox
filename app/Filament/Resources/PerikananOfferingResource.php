@@ -95,10 +95,17 @@ class PerikananOfferingResource extends Resource
                                     ->label(__('Product Stock'))
                                     ->required(),
 
+                                Forms\Components\TextInput::make('contact')
+                                    ->label('Nomor Whatsapp')
+                                    ->placeholder('8213456789')
+                                    ->tel()
+                                    ->telRegex('/^(8[1-9][0-9]{7,12})$/')
+                                    ->prefix(('+62')),
+
 
                                 Forms\Components\Toggle::make('is_visible')
                                     ->default(true)
-                                    ->label(__('Show'))
+                                    ->label(__('Show Product')),
                             ])
                     ])
                     ->columnSpan(['lg' => 1]),

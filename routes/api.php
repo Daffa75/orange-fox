@@ -10,4 +10,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/posts', [PostController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/posts/{slug}', [PostController::class, 'show'])->middleware('auth:sanctum');
 Route::get('/offerings', [OfferingController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/offerings/{slug}', [OfferingController::class, 'show'])->middleware('auth:sanctum');
+

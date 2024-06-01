@@ -68,4 +68,40 @@ class PostController extends Controller
             ]
         ]);
     }
+
+    public function show(Request $request, $slug)
+    {
+        // Check the Perikanan Post model
+        $postQuery = QueryBuilder::for(PerikananPost::class)
+            ->join('users', 'perikanan_posts.created_by', '=', 'users.id')
+            ->select('perikanan_posts.*', 'users.name as author')
+            ->where('perikanan_posts.slug', $slug)
+            ->where('perikanan_posts.status', 'published')
+            ->where('perikanan_posts.published_at', '<=', now())
+            ->with('media')
+            ->first();
+
+        if ($postQuery) {
+            $transformer = new PerikananPostTransformer($postQuery);
+            return response()->json($transformer);
+        }
+
+        // Check the Peternakan Post model
+        $articleQuery = QueryBuilder::for(PeternakanPost::class)
+            ->join('users', 'peternakan_posts.created_by', '=', 'users.id')
+            ->select('peternakan_posts.*', 'users.name as author')
+            ->where('peternakan_posts.slug', $slug)
+            ->where('peternakan_posts.status', 'published')
+            ->where('peternakan_posts.published_at', '<=', now())
+            ->with('media')
+            ->first();
+
+        if ($articleQuery) {
+            $transformer = new PerikananPostTransformer($articleQuery);
+            return response()->json($transformer);
+        }
+
+        // If no matching record is found, return a not found response
+        return response()->json(['error' => 'Not Found'], 404);
+    }
 }

@@ -12,7 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserResource extends Resource
 {
@@ -29,8 +31,28 @@ class UserResource extends Resource
         return __('User');
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $results = parent::getEloquentQuery();
+
+        if (Auth::user()->hasRole('Super Admin')) {
+            return $results;
+        } else {
+            return $results->whereDoesntHave('roles', function ($query) {
+                $query->where('name', 'Super Admin');
+            });
+        }
+    }
+
     public static function form(Form $form): Form
     {
+        $rolesQuery = Role::query();
+        if (!Auth::user()->hasRole('Super Admin')) {
+            $rolesQuery->where('name', '!=', 'Super Admin');
+        }
+
+        $roles = $rolesQuery->pluck('name', 'id');
+
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
@@ -51,8 +73,11 @@ class UserResource extends Resource
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                     ->dehydrated(fn ($state) => \filled($state))
                     ->required(fn (string $context): bool => $context === 'create'),
-                Forms\Components\Select::make('roles')->multiple()->relationship('roles', 'name')
-                
+                Forms\Components\Select::make('roles')
+                    ->multiple()
+                    ->options($roles)
+                    ->preload()
+
             ]);
     }
 

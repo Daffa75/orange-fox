@@ -11,10 +11,11 @@ use Althinect\FilamentSpatieRolesPermissions\Concerns\HasSuperAdmin;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasSuperAdmin, HasApiTokens;
+    use HasFactory, Notifiable, HasSuperAdmin, HasApiTokens, HasRoles;
 
     /**
      * The attributes that are mass assignable.
